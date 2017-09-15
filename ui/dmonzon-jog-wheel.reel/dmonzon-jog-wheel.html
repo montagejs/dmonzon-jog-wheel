@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="dmonzon-jog-wheel.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "dmonzon-jog-wheel"},
+                "_rotateComposer": {"@": "rotateComposer"},
+                "_rotatingBlock": {"#": "DmonzonJogWheel-block"},
+                "activationArea": {"#": "mark2"}
+            }
+        },
+        "rotateComposer": {
+            "prototype": "montage/composer/rotation-composer",
+            "properties": {
+                "component": {"@": "owner"},
+                "element": {"#": "mark2"},
+                "unit": "degrees"
+            },
+            "listeners": [
+                {
+                    "type": "rotate",
+                    "listener": {"@": "owner"}
+                },
+                {
+                    "type": "rotateEnd",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="dmonzon-jog-wheel" class="DmonzonJogWheel">
+        <div class="DmonzonJogWheel-knobBg">
+            
+            <div class="DmonzonJogWheel-dial">
+                <div data-montage-id="DmonzonJogWheel-block" class="DmonzonJogWheel-block">
+                    <div class="DmonzonJogWheel-mark1"> </div>
+                    <div data-montage-id="mark2" class="DmonzonJogWheel-mark2"></div>
+                </div>
+                <div class="DmonzonJogWheel-bevel">
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

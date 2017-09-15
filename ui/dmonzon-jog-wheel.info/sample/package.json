@@ -1,0 +1,13 @@
+{
+    "name": "dmonzon-jog-wheel-sample",
+    "version": "1.0.0",
+    "private": false,
+    "dependencies": {
+        "montage": "*",
+        "dmonzon-jog-wheel": "*"
+    },
+    "mappings": {
+        "montage": "../../../node_modules/montage",
+        "dmonzon-jog-wheel": "../../../"
+    }
+}

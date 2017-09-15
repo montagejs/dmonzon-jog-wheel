@@ -1,0 +1,59 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="demo.css"/>
+<script type="text/javascript" src="jquery/jquery-1.7.js" ></script>
+<script type="text/javascript">
+	// (function($){
+	//  var _e = document.createElement("canvas").width
+	//  $.fn.cssrotate = function(d) {  
+	//     return this.css({
+	//   '-moz-transform':'rotate('+d+'deg)',
+	//   '-webkit-transform':'rotate('+d+'deg)',
+	//   '-o-transform':'rotate('+d+'deg)',
+	//   '-ms-transform':'rotate('+d+'deg)'
+	//  }).prop("rotate", _e ? d : null)
+	//  }; 
+	//  var $_fx_step_default = $.fx.step._default;
+	//  $.fx.step._default = function (fx) {
+	//  if(fx.prop != "rotate")return $_fx_step_default(fx);
+	//  if(typeof fx.elem.rotate == "undefined")fx.start = fx.elem.rotate = 0;
+	//  $(fx.elem).cssrotate(fx.now)
+	//  }; 
+	// })(jQuery);
+	</script>
+</head>
+<body>
+
+<div id="Button">Rotate</div>
+<div class="container">
+<div class="knobBg">
+
+<div class="dial">
+	<div class="block">
+		<div class="mark1"> </div>
+		<div class="mark2"></div>
+	</div>
+	<div class="bevel">
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+var button = document.getElementById("Button"),
+	block = document.getElementsByClassName("block")[0];
+button.addEventListener("click",function(event) {
+	block.classList.toggle("forward");
+})
+$("#Button").click(function(){
+	var rand = Math.floor(Math.random() * 720);
+ 	 $(".block").animate({rotate:rand},{duration:1000})
+	$(".mark1").animate({rotate:-rand},{duration:1000})
+	$(".mark2").animate({rotate:-rand},{duration:1000})
+
+});
+
+</script>
+</body>
+</html>

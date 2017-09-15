@@ -1,0 +1,17 @@
+{
+    "name": "dmonzon-jog-wheel-tmp",
+    "version": "0.1.0",
+    "dependencies": {
+        "montage": "montagejs/montage#master"
+    },
+    "devDependencies": {
+        "montage-testing": "montagejs/montage-testing.git#master"
+    },
+    "exclude": [
+        "run-tests.html",
+        "test"
+    ],
+    "bundle": [
+        "ui/main.reel"
+    ]
+}

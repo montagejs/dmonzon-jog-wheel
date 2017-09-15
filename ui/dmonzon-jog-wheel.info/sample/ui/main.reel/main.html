@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script type="text/montage-serialization">
+        {
+            "owner": {
+                "values": {
+                    "element": {"#": "main"}
+                }
+            },
+
+            "jogWheel": {
+                "prototype": "dmonzon-jog-wheel/ui/dmonzon-jog-wheel.reel",
+                "properties": {
+                    "element": {"#": "dmonzon-jog-wheel"},
+                    "value": 72.5,
+                    "min": 51,
+                    "max": 393
+                }
+            },
+
+            "text": {
+                "prototype": "montage/ui/text.reel",
+                "values": {
+                    "element": {"#": "text"},
+                    "value": {"<-": "@jogWheel.value || 'Rotate the jog wheel to change the value'"}
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div data-montage-id="main" class="Main">
+        <header>Circular Slider Device Sample</header>
+        <section class="buttons">
+            <span data-montage-id="text"></span>
+            <br>            
+            <div data-montage-id="dmonzon-jog-wheel"></div>
+        </section>
+    </div>
+</body>
+</html>
