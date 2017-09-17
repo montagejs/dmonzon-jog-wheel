@@ -2,46 +2,13 @@
  * @module ./den.reel
  * @requires montage/ui/component
  */
-var Component = require("montage/ui/component").Component;
+var Control = require("montage/ui/control").Control;
 
 /**
  * @class Den
  * @extends Component
  */
-exports.DmonzonJogWheel = Component.specialize(/** @lends Den# */ {
-
-    _icon: {
-        value: null
-    },
-
-    _needsUpdateIcon: {
-        value: false
-    },
-
-    icon: {
-        get: function () {
-            return this._icon;
-        },
-        set: function (value) {
-            switch (value) {
-            case "am":
-                this._icon = "ui/den.reel/day.png";
-                break;
-            case "pm":
-                this._icon = "ui/den.reel/night.png";
-                break;
-            default:
-                this._icon = null;
-                break;
-            }
-            this._needsUpdateIcon = true;
-            this.needsDraw = true;
-        }
-    },
-
-    _value: {
-        value: 0
-    },
+exports.DmonzonJogWheel = Control.specialize(/** @lends Den# */ {
 
     value: {
         get: function () {
@@ -50,8 +17,7 @@ exports.DmonzonJogWheel = Component.specialize(/** @lends Den# */ {
             } else if (this._value < this.min) {
                 return this.min;
             }
-            
-            return this._value;
+            return this.super();
         },
         set: function (value) {
             if (! isNaN(value = parseFloat(value))) {
@@ -66,7 +32,7 @@ exports.DmonzonJogWheel = Component.specialize(/** @lends Den# */ {
                 }
 
                 if (this._value !== value) {
-                    this._value = value;
+                    this.super(value);
                     //if(shouldDraw) 
                         this.needsDraw = true;
                 }
@@ -95,19 +61,6 @@ exports.DmonzonJogWheel = Component.specialize(/** @lends Den# */ {
             this.needsDraw = true;
         }
     },
-
-    temperatureDelta: {
-        value: 0
-    },
-
-    _temperatureOffset: {
-        value: 51
-    },
-
-    _previousTimestamp: {
-        value: null
-    },
-
 
     // The following enterDocument and handleTouchstart are a workaround for measurement
     // that should be removed after Afonso fixes loading css styles on time
@@ -175,6 +128,9 @@ exports.DmonzonJogWheel = Component.specialize(/** @lends Den# */ {
     _isRotating: {
         value: false
     },
+    _startsRotating: {
+        value: false
+    },
 
     handleRotate: {
         value: function(event) {
@@ -187,6 +143,12 @@ exports.DmonzonJogWheel = Component.specialize(/** @lends Den# */ {
                 this.value = this.max;
             }
             this._rotation = event.rotation;
+            if(!this._isRotating) {
+                this._startsRotating = true;
+            }
+            else {
+                this._startsRotating = false;                
+            }
             this._isRotating = true;
             // if(shouldDraw) 
                 this.needsDraw = true;
@@ -201,15 +163,6 @@ exports.DmonzonJogWheel = Component.specialize(/** @lends Den# */ {
         }
     },
 
-    // heatingRate and coolingRate are in farenheight degrees per second
-    heatingRate: {
-        value: 1
-    },
-
-    coolingRate: {
-        value: 1
-    },
-
     handlePress: {
         value: function () {
             console.log("press!");
@@ -219,6 +172,8 @@ exports.DmonzonJogWheel = Component.specialize(/** @lends Den# */ {
     draw: {
         value: function (timestamp) {
             this._rotatingBlock.style[this._transform] = "rotate3d(0, 0, 1, " + this._rotation + "deg)";
+            if(this._startsRotating) this.element.classList.add("isRotating");
+            else if(!this._isRotating)  this.element.classList.remove("isRotating");
         }
     }
 

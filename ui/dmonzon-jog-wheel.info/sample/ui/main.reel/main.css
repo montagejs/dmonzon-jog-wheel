@@ -27,8 +27,8 @@ header {
     color: #666;
 }
 
-.Thermostat {
-    width: 346px;
-    height: 346px;
-    transition: transform .2s;
+[data-montage-id="dmonzon-jog-wheel"] {
+    width:278px;
+    height:278px;    
 }
+

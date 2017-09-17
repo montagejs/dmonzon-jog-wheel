@@ -1,19 +1,20 @@
 .DmonzonJogWheel-knobBg {
     position: relative;
-    left:20px;
-    top:40px;
-    width:478px;
-    height:478px;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
     margin:0px;
     background-image: url(images/knobBg.png);
+    background-size: 100%;
 }
     
 .DmonzonJogWheel-dial {
       position:absolute;
-      left:58px;
-      top:44px;
-      width:360px;
-      height:360px;
+      left: 12.133891213389121%;
+      top: 9.205020920502092%;
+      width:75.313807531380753%;
+      height:75.313807531380753%;
 }
     
 .DmonzonJogWheel-block.forward {
@@ -24,58 +25,69 @@
 }
     
 .DmonzonJogWheel-block {
-      position:absolute;
-      left:0px;
-      top:0px;
-      width:360px;
-      height:360px;
-      margin:0px;
-      border-radius: 300px;
-      -moz-border-radius: 300px;
-      background: url(images/texture.png) rgba(204, 170, 170, 0);
-      -moz-box-shadow: inset 0 0 black;
-      -webkit-box-shadow: inset 0 0 black;
-      box-shadow: inset 0 0 black;
-      opacity: 1;
-      /* transition: transform 1s; */
+    position:absolute;
+    left:0%;
+    top:0%;
+    width:100%;
+    height:100%;
+    margin:0px;
+    border-radius: 83.333333333333333%;
+    -moz-border-radius: 83.333333333333333%;
+    background: url(images/texture.png) rgba(204, 170, 170, 0);
+    background-size: 100%;
+    -moz-box-shadow: inset 0 0 black;
+    -webkit-box-shadow: inset 0 0 black;
+    box-shadow: inset 0 0 black;
+    opacity: 1;
+    /* transition: transform 1s; */
     }
     
 .DmonzonJogWheel-bevel {
-      position:absolute;
-      /* left:93px;
-      top: 205px; */
-      left:15px;
-      top: 15px;
-        width:331px;
-      height:331px;
-      margin:0px;
-      border-radius: 300px;
-      -moz-border-radius: 300px;
-      background: url(images/bevel.png) rgba(170, 195, 204, 0);
-      pointer-events:none;
+    position:absolute;
+    /* left:93px;
+    top: 205px; */
+    left:4.166666666666667%;
+    top: 4.166666666666667%;
+    width:91.944444444444444%;
+    height:91.944444444444444%;
+    margin:0px;
+    border-radius: 90.634441087613293%;
+    -moz-border-radius: 90.634441087613293%;
+    background: url(images/bevel.png) rgba(170, 195, 204, 0);
+    background-size: 100%;
+    pointer-events:none;
 }
     
     
-.DmonzonJogWheel-mark1 {
+.DmonzonJogWheel-indicator {
       position:absolute;
-      width:35px;
-      height:35px;
-      left:70px;
-      top:70px;
+      width:9.722222222222222%;
+      height:9.722222222222222%;
+      left:19.444444444444444%;
+      top:19.444444444444444%;
       margin:0px;
-      border-radius: 30px;
-      -moz-border-radius: 30px;
-      background-image: url(images/red.png);
-    }
+      border-radius: 85.714285714285714%;
+      -moz-border-radius: 85.714285714285714%;
+      background-image: url(images/black-indicator.png);
+      background-size: 100%;    
+      -webkit-transition: background-image 0.2s ease-in-out;
+      transition: background-image 0.2s ease-in-out;
+}
+
+.DmonzonJogWheel.isRotating .DmonzonJogWheel-indicator {
+    background-image: url(images/red-indicator.png);
+}
     
-.DmonzonJogWheel-mark2 {
+    
+.DmonzonJogWheel-handle {
       position:absolute;
-      width:117px;
-      height:117px;
-      left:190px;
-      top:190px;
+      width:32.5%;
+      height:32.5%;
+      left:52.777777777777778%;
+      top:52.777777777777778%;
       margin:0px;
-      border-radius: 30px;
-      -moz-border-radius: 30px;
+      border-radius: 25.641025641025641%;
+      -moz-border-radius: 25.641025641025641%;
       background-image: url(images/mark2.png);
+      background-size: 100%;
     }

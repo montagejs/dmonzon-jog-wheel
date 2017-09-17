@@ -10,15 +10,17 @@
                 "element": {"#": "dmonzon-jog-wheel"},
                 "_rotateComposer": {"@": "rotateComposer"},
                 "_rotatingBlock": {"#": "DmonzonJogWheel-block"},
-                "activationArea": {"#": "mark2"}
+                "activationArea": {"#": "handle"}
             }
         },
         "rotateComposer": {
             "prototype": "montage/composer/rotation-composer",
             "properties": {
                 "component": {"@": "owner"},
-                "element": {"#": "mark2"},
-                "unit": "degrees"
+                "element": {"#": "handle"},
+                "unit": "degrees",
+                "hasMomentum": true,
+                "animateMomentum": true
             },
             "listeners": [
                 {
@@ -40,8 +42,8 @@
             
             <div class="DmonzonJogWheel-dial">
                 <div data-montage-id="DmonzonJogWheel-block" class="DmonzonJogWheel-block">
-                    <div class="DmonzonJogWheel-mark1"> </div>
-                    <div data-montage-id="mark2" class="DmonzonJogWheel-mark2"></div>
+                    <div class="DmonzonJogWheel-indicator"> </div>
+                    <div data-montage-id="handle" class="DmonzonJogWheel-handle"></div>
                 </div>
                 <div class="DmonzonJogWheel-bevel">
             </div>
