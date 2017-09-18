@@ -1,5 +1,5 @@
 {
-    "name": "dmonzon-jog-wheel-tmp",
+    "name": "dmonzon-jog-wheel",
     "version": "0.1.0",
     "dependencies": {
         "montage": "montagejs/montage#master"
