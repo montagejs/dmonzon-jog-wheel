@@ -7,6 +7,10 @@
     "devDependencies": {
         "montage-testing": "montagejs/montage-testing.git#master"
     },
+    "mappings": {
+        "dmonzon-jog-wheel": "."
+    },
+
     "exclude": [
         "run-tests.html",
         "test"
