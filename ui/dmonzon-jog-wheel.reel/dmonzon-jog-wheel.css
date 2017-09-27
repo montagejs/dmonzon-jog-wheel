@@ -70,11 +70,11 @@
       -moz-border-radius: 85.714285714285714%;
       background-image: url(images/black-indicator.png);
       background-size: 100%;    
-      -webkit-transition: background-image 0.2s ease-in-out;
-      transition: background-image 0.2s ease-in-out;
+      /* -webkit-transition: background-image 0.05s ease-in-out;
+      transition: background-image 0.05s ease-in-out; */
 }
 
-.DmonzonJogWheel.isRotating .DmonzonJogWheel-indicator {
+.DmonzonJogWheel-indicator.on {
     background-image: url(images/red-indicator.png);
 }
     

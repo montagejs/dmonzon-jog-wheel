@@ -3,43 +3,83 @@ var Component = require("montage/ui/component").Component,
 
 exports.Main = Component.specialize(/** @lends Main# */{
 
+    constructor: {
+        value: function() {
+            this.blinkButtonLabel = this.startBlinkingLabel;
+            return this;
+        }
+    },
+
     message: {
         value: null
     },
 
-    handleAction: {
-        value: function (event) {
-            this.message = event.target.identifier + " button has been clicked";
+    blinkingOn: {
+        value: false
+    },
+
+    blinks: {
+        value: false
+    },
+
+    _blinkRate: {
+        value: 6
+    },
+    blinkRate: {
+        get: function(){
+            return this._blinkRate;
+        },
+        set: function(value) {
+            if(this._blinkRate !== value) {
+                this._blinkRate = value;
+                this._toggleBlinkInterval();
+            }
+        }
+    },
+    startBlinkingLabel: {
+        value: "Start Blinking Indicator"
+    },
+    stopBlinkingLabel: {
+        value: "Stop Blinking Indicator"
+    },
+
+    blinkButtonLabel: {
+        value: null
+    },
+
+    _blinkIntervalId: {
+        value: null
+    },
+
+    _blinkIntervalFunction: {
+        value: function() {
+            this.blinkingOn = true;
         }
     },
 
-    handleLongAction: {
-        value: function (event) {
-            this.message = event.target.identifier + " button has been clicked (long action)";
+    _toggleBlinkInterval: {
+        value: function() {
+            if(this._blinkIntervalId) clearInterval(this._blinkIntervalId);
+            if(this.blinks) {
+                if(!this.hasOwnProperty("_blinkIntervalFunction")) {
+                    this._blinkIntervalFunction = this._blinkIntervalFunction.bind(this);
+                }
+                this._blinkIntervalId = setInterval(this._blinkIntervalFunction,60000/this._blinkRate);
+                //console.log("setInterval delay is ",60000/this._blinkRate);
+            }
+
         }
     },
 
-    handlePromiseButtonAction: {
+    handleBlinkButtonAction: {
         value: function (event) {
-            var self = this;
-
-            this.message = "Promise is pending resolution";
-        
-            this.promiseButton.promise = new Promise(function(resolve){
-                setTimeout(function(){
-                    resolve();
-                }, 2000);
-            }).then(function(){
-                self.message = "First promise resolved!";
-            });
-
-            this.promiseButton.promise = new Promise(function(resolve){
-                setTimeout(function(){
-                    resolve();
-                }, 5000);
-            }).then(function(){
-                self.message = "Second promise resolved!";
-            });
+            this.blinks = !this.blinks;
+            this.blinkButtonLabel = this.blinks 
+                ? this.stopBlinkingLabel
+                : this.startBlinkingLabel;
+            this._toggleBlinkInterval();
         }
     }
+
+    
 });

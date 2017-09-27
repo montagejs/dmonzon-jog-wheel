@@ -150,16 +150,13 @@ exports.DmonzonJogWheel = Control.specialize(/** @lends Den# */ {
                 this._startsRotating = false;                
             }
             this._isRotating = true;
-            // if(shouldDraw) 
-                this.needsDraw = true;
         }
     },
 
     handleRotateEnd: {
         value: function(event) {
-            this.value = Math.floor(this.value) + 0.5;
+            this.value = Math.floor(this.value);
             this._isRotating = false;
-            this.needsDraw = true;
         }
     },
 
@@ -169,11 +166,68 @@ exports.DmonzonJogWheel = Control.specialize(/** @lends Den# */ {
         }
     },
 
+    /**
+     * Defines how long Jog-Wheel's indicator stays lit when blinking. 
+     * Value is expected to be in ms
+     *
+     * @property {number} value
+     * @default {number} 50
+     */
+    blinksIndicatorDuration: {
+        value: 50
+    },
+    _blinksIndicatorOnceTimeOff: {
+        value: 0
+    },
+
+    _blinksIndicatorOnce: {
+        value: false
+    },
+
+    /**
+     * Instructs Jog-Wheel to blink its indicator once when set toi true. 
+     * Once indicator has blinked the property value reverts to false.
+     *
+     * @property {boolean} value
+     * @default {boolean} false
+     */
+    blinksIndicatorOnce: {
+        get: function() {
+            return this._blinksIndicatorOnce;
+        },
+        set: function(value) {
+            if(this._blinksIndicatorOnce !== value) {
+                this._blinksIndicatorOnce = value;
+                if(this._blinksIndicatorOnce) {
+                    this._blinksIndicatorOnceTimeOff = Date.now()+this.blinksIndicatorDuration;
+                }
+                else {
+                    this._blinksIndicatorOnceTimeOff = 0;
+                }
+                this.needsDraw = true;
+            }
+        }
+    },
+
     draw: {
         value: function (timestamp) {
             this._rotatingBlock.style[this._transform] = "rotate3d(0, 0, 1, " + this._rotation + "deg)";
-            if(this._startsRotating) this.element.classList.add("isRotating");
-            else if(!this._isRotating)  this.element.classList.remove("isRotating");
+            if(this._startsRotating || this.blinksIndicator) {
+                this._indicatorElement.classList.add("on");
+                
+                if(this.blinksIndicator) {
+                    if(this._blinksIndicatorOnceTimeOff>Date.now()) {
+                        this.needsDraw = true;
+                    }
+                    else {
+                        this.blinksIndicator = false;
+                    }
+                }
+    
+            }
+            else if(!this._isRotating && (!this.blinksIndicator && this._indicatorElement.classList.has("on"))) {
+                this._indicatorElement.classList.remove("on");
+            }             
         }
     }
 

@@ -14,9 +14,10 @@
                 "prototype": "dmonzon-jog-wheel/ui/dmonzon-jog-wheel.reel",
                 "properties": {
                     "element": {"#": "dmonzon-jog-wheel"},
-                    "value": 72.5,
-                    "min": 51,
-                    "max": 393
+                    "value": {"<->": "@owner.blinkRate"},
+                    "min": 6,
+                    "max": 800,
+                    "blinksIndicatorOnce": {"<->": "@owner.blinkingOn"}
                 }
             },
 
@@ -26,7 +27,22 @@
                     "element": {"#": "text"},
                     "value": {"<-": "@jogWheel.value || 'Rotate the jog wheel to change the value'"}
                 }
+            },
+
+            "blinkButton": {
+                "prototype": "montage/ui/button.reel",
+                "values": {
+                    "element": {"#": "blink-button"},
+                    "label": {"<-": "@owner.blinkButtonLabel"}
+                },
+                "listeners":[
+                    {
+                        "type": "action",
+                        "listener": {"@": "owner"}
+                    }
+                ]
             }
+            
         }
     </script>
 </head>
@@ -37,6 +53,7 @@
             <span data-montage-id="text"></span>
             <br>            
             <div data-montage-id="dmonzon-jog-wheel"></div>
+            <button data-montage-id="blink-button" class="button custom"></button>
         </section>
     </div>
 </body>
