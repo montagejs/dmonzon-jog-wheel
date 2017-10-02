@@ -6,22 +6,24 @@
     <script type="text/montage-serialization">
     {
         "owner": {
-            "properties": {
+            "values": {
                 "element": {"#": "dmonzon-jog-wheel"},
                 "_rotateComposer": {"@": "rotateComposer"},
                 "_rotatingBlock": {"#": "DmonzonJogWheel-block"},
-                "_indicatorElement": {"#": "indicator"},
+                "_indicatorElementOn": {"#": "indicator-on"},
+                "_indicatorElementOff": {"#": "indicator-off"},
                 "activationArea": {"#": "handle"}
             }
         },
         "rotateComposer": {
             "prototype": "montage/composer/rotation-composer",
-            "properties": {
+            "values": {
                 "component": {"@": "owner"},
                 "element": {"#": "handle"},
                 "unit": "degrees",
                 "hasMomentum": true,
-                "animateMomentum": true
+                "animateMomentum": true,
+                "center": {"=":"@owner._center"}
             },
             "listeners": [
                 {
@@ -43,7 +45,8 @@
             
             <div class="DmonzonJogWheel-dial">
                 <div data-montage-id="DmonzonJogWheel-block" class="DmonzonJogWheel-block">
-                    <div data-montage-id="indicator" class="DmonzonJogWheel-indicator"> </div>
+                    <div data-montage-id="indicator-off" class="DmonzonJogWheel-indicator off"> </div>
+                    <div data-montage-id="indicator-on" class="DmonzonJogWheel-indicator on"> </div>
                     <div data-montage-id="handle" class="DmonzonJogWheel-handle"></div>
                 </div>
                 <div class="DmonzonJogWheel-bevel">

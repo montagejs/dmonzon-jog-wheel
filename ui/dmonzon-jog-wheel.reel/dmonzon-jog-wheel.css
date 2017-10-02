@@ -68,14 +68,24 @@
       margin:0px;
       border-radius: 85.714285714285714%;
       -moz-border-radius: 85.714285714285714%;
-      background-image: url(images/black-indicator.png);
       background-size: 100%;    
       /* -webkit-transition: background-image 0.05s ease-in-out;
       transition: background-image 0.05s ease-in-out; */
+    }
+
+.DmonzonJogWheel-indicator.off {
+    background-image: url(images/black-indicator.png);
 }
 
 .DmonzonJogWheel-indicator.on {
+    opacity: 0;
     background-image: url(images/red-indicator.png);
+}
+
+.DmonzonJogWheel-indicator.on.active {
+    -webkit-transition: opacity 0.05s ease-in-out;
+    transition: opacity 0.05s ease-in-out;
+    opacity: 1;
 }
     
     

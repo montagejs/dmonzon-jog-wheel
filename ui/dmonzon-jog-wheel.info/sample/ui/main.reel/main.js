@@ -73,11 +73,12 @@ exports.Main = Component.specialize(/** @lends Main# */{
 
     handleBlinkButtonAction: {
         value: function (event) {
-            this.blinks = !this.blinks;
-            this.blinkButtonLabel = this.blinks 
+            this.blinksIndicator = !this.blinksIndicator;
+            // this.blinks = !this.blinks;
+            this.blinkButtonLabel = this.blinksIndicator 
                 ? this.stopBlinkingLabel
                 : this.startBlinkingLabel;
-            this._toggleBlinkInterval();
+            // this._toggleBlinkInterval();
         }
     }
 
