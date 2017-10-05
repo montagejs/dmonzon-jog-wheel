@@ -53,6 +53,26 @@ exports.DmonzonJogWheel = Control.specialize(/** @lends Den# */ {
     max: {
         value: 100
     },
+    _fullRotationValue: {
+        value: undefined
+    },
+
+    /**
+     * Defines how much value is represented by a full rotation. 
+     * Defaults to enter the valid range, max - min, on one rotation
+     *
+     * @property {number} value
+     * @default {number} this.max - this.min
+     */
+
+    fullRotationValue: {
+        get: function() {
+            return this._fullRotationValue || (this._fullRotationValue = this.max - this.min);
+        },
+        set: function(value) {
+            this._fullRotationValue = value;
+        }
+    },
 
 
     // The following enterDocument and handleTouchstart are a workaround for measurement
@@ -124,8 +144,7 @@ exports.DmonzonJogWheel = Control.specialize(/** @lends Den# */ {
 
     handleRotate: {
         value: function(event) {
-            //this.value += event.deltaRotation / 6;
-            this.value += event.deltaRotation / 2;
+            this.value += event.deltaRotation / 360 * this.fullRotationValue;
             if (this.value < this.min) {
                 this.value = this.min;
             }
